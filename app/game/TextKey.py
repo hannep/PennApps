@@ -4,8 +4,14 @@ Created on Sep 7, 2013
 @author: Phillip
 '''
 
-from game.Key import Key
+from Key import Key
+from google.appengine.ext import ndb
 
+class TextKeyModel(ndb.Model):
+    answers = ndb.StringProperty(repeated=True)
+    value = ndb.IntegerProperty()
+    id = ndb.StringProperty()
+    
 class TextKey(Key):
     '''
     classdocs
@@ -27,3 +33,9 @@ class TextKey(Key):
                 answer.markCompleted()
         answer.markGraded()
         return
+    
+    @staticmethod
+    def createFromAppEngine(id):
+        key_query = TextKeyModel.query(TextKeyModel.id == id)
+        key = key_query.fetch(1)[0]
+        return TextKey(key.answers, key.value)

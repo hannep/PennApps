@@ -3,10 +3,11 @@ Created on Sep 7, 2013
 
 @author: Phillip
 '''
-
 from Key import Key
 
-class LocationKey(Key):
+
+
+class CompositeKey(Key):
     '''
     classdocs
     '''
@@ -16,8 +17,11 @@ class LocationKey(Key):
         '''
         Constructor
         '''
-        super(LocationKey, self).__init__()
+        super(CompositeKey, self).__init__()
         
+    def gradeAnswer(self, answer):
+        pass
+    
     @staticmethod
     def createFromAppEngine(self, id):
         pass

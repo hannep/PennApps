@@ -4,7 +4,7 @@ Created on Sep 7, 2013
 @author: Phillip
 '''
 
-from game.Key import Key
+from Key import Key
 
 class PictureKey(Key):
     '''
@@ -18,3 +18,7 @@ class PictureKey(Key):
         '''
         super(PictureKey, self).__init__()
         self.isHandGraded = True
+        
+    @staticmethod
+    def createFromAppEngine(self, id):
+        pass
