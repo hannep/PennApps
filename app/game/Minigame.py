@@ -5,7 +5,10 @@ Created on Sep 7, 2013
 '''
 
 from TextKey import TextKey
+from LocationKey import LocationKey
 from TextQuestion import TextQuestion
+from ImageQuestion import ImageQuestion
+from CompositeQuestion import CompositeQuestion
 from google.appengine.ext import ndb
 
 class MinigameModel(ndb.Model):
@@ -67,6 +70,13 @@ class Minigame(object):
                 counter = counter + 1
         return (counter - 1) < self.numRetries
     
+    def countCorrectSolutions(self):
+        counter = 0
+        for answer in self.answers:
+            if answer.isComplete:
+                counter = counter + 1
+        return counter
+    
     @staticmethod
     def createFromAppEngine():
         minigame_query = MinigameModel.query()
@@ -75,10 +85,18 @@ class Minigame(object):
         for minigame in minigame_list:
             key = None
             question = None
-            if minigame.key_type == "text":
+            if minigame.key_type.lower() == "text":
                 key = TextKey.createFromAppEngine(minigame.keyId)
-            if minigame.question_type == "text":
+            elif minigame.key_type.lower() == "location":
+                key = LocationKey.createFromAppEngine(minigame.keyId)
+            elif minigame.key_type.lower() == "composite":
+                pass
+            if minigame.question_type.lower() == "text":
                 question = TextQuestion.createFromAppEngine(minigame.questionId)
+            elif minigame.question_type.lower() == "image":
+                question = ImageQuestion.createFromAppEngine(minigame.questionId)
+            elif minigame.question_type.lower() == "composite":
+                question = CompositeQuestion.createFromAppEngine(minigame.questionId)
             minigames.append(Minigame(minigame.id, question, key, list(), minigame.retries))
         return minigames
                 

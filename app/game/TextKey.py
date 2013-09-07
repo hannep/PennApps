@@ -10,6 +10,9 @@ from google.appengine.ext import ndb
 class TextKeyModel(ndb.Model):
     answers = ndb.StringProperty(repeated=True)
     value = ndb.IntegerProperty()
+    first = ndb.IntegerProperty()
+    second = ndb.IntegerProperty()
+    third = ndb.IntegerProperty()
     id = ndb.StringProperty()
     
 class TextKey(Key):
@@ -27,13 +30,14 @@ class TextKey(Key):
         self.value = value
         
     def gradeAnswer(self, answer):
-        for candidate in self.answers:
-            if candidate.lower() == answer.textData.lower():
-                answer.score = self.value
-                answer.markCompleted()
+        try:
+            for candidate in self.answers:
+                if candidate.lower() == answer.textData.lower():
+                    answer.score = self.value + self.getBonus(self.parent.countCorrectSolutions())
+                    answer.markCompleted()
+        except:
+            pass
         answer.markGraded()
-        return
-    
     @staticmethod
     def createFromAppEngine(id):
         key_query = TextKeyModel.query(TextKeyModel.id == id)

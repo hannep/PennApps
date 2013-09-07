@@ -10,7 +10,7 @@ class Answer(object):
     '''
 
 
-    def __init__(self, owner, minigameId, textData = ""):
+    def __init__(self, owner, minigameId, data = None):
         '''
         Constructor
         '''
@@ -18,7 +18,7 @@ class Answer(object):
         self.score = 0
         self.isGraded = False
         self.isComplete = False
-        self.textData = textData
+        self.data = data
         self.id = minigameId
         
     def markCompleted(self):
@@ -28,3 +28,6 @@ class Answer(object):
     def markGraded(self):
         self.isGraded = True
         
+    def grade(self, grade):
+        self.score = grade
+        self.markGrade()
