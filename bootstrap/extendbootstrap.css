@@ -12,3 +12,11 @@
 #teamName {
     width: 250px; 
 }
+
+#join-game {
+    width: 250px; 
+}
+
+.jumbotron { 
+    line-height: 1; 
+}
