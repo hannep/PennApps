@@ -67,5 +67,5 @@ class Root(object):
         return ET.tostring(response)
     index.exposed = True
 
-cherrypy.quickstart(Root())
+#cherrypy.quickstart(Root())
 #application = cherrypy.Application(Root(), script_name=None, config=None)
