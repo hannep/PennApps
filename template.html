@@ -4,9 +4,13 @@
 </head>
 <body>
     <ul id="navigation">
-    {% for row in rows %}
-       <h3>{{row[3]}}<h3>
+           <table>
+ {% for text in texts %}
+
+            <tr><td>{{text["number"]}}</td> <td>{{text["answer"]}}</td><td>{{text["correct"]}}</td></tr>
     {% endfor %}
+
+            </table>
     </ul>
 </body>
 </html>
