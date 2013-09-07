@@ -1,0 +1,14 @@
+​<!DOCTYPE html>
+{% autoescape true %}
+<html>
+  <head>
+    {% include 'includes/bootstrap.html' %}
+    <script type="text/javascript" src="js/main.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+  </head>
+  <body>
+    <h1>Message from Python:</h1>
+    <p class="lead">{{ message }}</p>
+  </body>
+</html>
+{% endautoescape %}
