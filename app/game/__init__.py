@@ -7,6 +7,8 @@ from Minigame import *
 from Game import *
 from Answer import *
 import fileinput, sys
+import geopy
+import geopy.distance
 
 #game = GameModel(id = "game", duration = -1)
 #game.put()

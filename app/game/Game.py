@@ -12,6 +12,7 @@ from google.appengine.ext import ndb
 
 class GameModel(ndb.Model):
     id = ndb.StringProperty()
+    name = ndb.StringProperty()
     duration = ndb.IntegerProperty()
 
 class Game(object):
@@ -19,7 +20,7 @@ class Game(object):
     classdocs
     '''
     def __init__(self, name, admins = list(), users = list(), minigames = list(), duration = -1):
-        self.name
+        self.name = name
         self.admins = list()
         self.users = list()
         self.adminNotifications = list()
@@ -83,4 +84,4 @@ class Game(object):
         minigames = Minigame.createFromAppEngine()
         game_query = GameModel.query(GameModel.id == id)
         game = game_query.fetch(1)[0]
-        return Game(game.id, admins, users, minigames, game.duration)
+        return Game(game.name, admins, users, minigames, game.duration)

@@ -3,32 +3,34 @@ Created on Sep 7, 2013
 
 @author: Phillip
 '''
-
 from Question import Question
 from google.appengine.ext import ndb
 
 class ImageQuestionModel(ndb.Model):
     id = ndb.StringProperty()
+    string = ndb.StringProperty(indexed=False)
     url = ndb.StringProperty(indexed=False)
     
-class ImageQuestion(Question):
+
+class CompositeQuestion(Question):
     '''
     classdocs
     '''
 
 
-    def __init__(self, url, parent = None):
+    def __init__(self, text, url, parent = None):
         '''
         Constructor
         '''
-        super(ImageQuestion, self).__init__(parent)
+        super(CompositeQuestion, self).__init__(parent)
         self.url = url
+        self.text = text
         
     def getTextRepresentation(self):
-        return self.url
+        return "text:" + self.text + ";" + "\nimg:" +self.url + ";"
     
     @staticmethod
     def createFromAppEngine(self, id):
         question_query = ImageQuestionModel.query(ImageQuestionModel.id == id)
         question = question_query.fetch(1)[0]
-        return ImageQuestion(question.string)
+        return CompositeQuestion(question.string, question.url)
