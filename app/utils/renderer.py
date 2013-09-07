@@ -13,5 +13,5 @@ JINJA_ENVIRONMENT = jinja2.Environment(
 # Helpers
 ###
 def render(template_name, template_values):
-	template = JINJA_ENVIRONMENT.get_template('index.html')
+	template = JINJA_ENVIRONMENT.get_template(template_name)
 	return template.render(template_values)

@@ -4,7 +4,13 @@ Created on Sep 7, 2013
 @author: Phillip
 '''
 
-from game.Question import Question
+from Question import Question
+from google.appengine.ext import ndb
+
+class TextQuestionModel(ndb.Model):
+    id = ndb.StringProperty()
+    string = ndb.StringProperty(indexed=False)
+
 
 class TextQuestion(Question):
     '''
@@ -21,3 +27,9 @@ class TextQuestion(Question):
         
     def getTextRepresentation(self):
         return self.text
+    
+    @staticmethod
+    def createFromAppEngine(id):
+        question_query = TextQuestionModel.query(TextQuestionModel.id == id)
+        question = question_query.fetch(1)[0]
+        return TextQuestion(question.string)

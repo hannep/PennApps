@@ -21,4 +21,3 @@ class Key(object):
     @abstractmethod
     def gradeAnswer(self, answer):
         pass
-        

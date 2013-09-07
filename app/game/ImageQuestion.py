@@ -4,7 +4,7 @@ Created on Sep 7, 2013
 @author: Phillip
 '''
 
-from game.Question import Question
+from Question import Question
 
 class ImageQuestion(Question):
     '''
@@ -20,3 +20,7 @@ class ImageQuestion(Question):
         
     def getTextRepresentation(self):
         return ""
+    
+    @staticmethod
+    def createFromAppEngine(self, id):
+        pass
