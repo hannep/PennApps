@@ -9,9 +9,9 @@ class Person(object):
     '''
     classdocs
     '''
-    fromNum = "+11234567890"
-    account_sid = ""
-    auth_token = ""
+    fromNum = "+16316157486"
+    account_sid = "AC87e3e47533f35abf2ee9f1cfe46ba62f"
+    auth_token = "1e77d75cccbccbd0467e4a14f36538eb"
     
     client = TwilioRestClient(account_sid, auth_token)
 
