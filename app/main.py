@@ -7,6 +7,7 @@ import webapp2
 # App imports
 ###
 from utils import renderer
+from game import *
 
 ###
 # Temporary constants for interface dev
@@ -55,7 +56,7 @@ class AdminGameController(webapp2.RequestHandler):
 		self.response.write(rendered)
 
 	def games(self):
-		return MOCK_GAMES
+		return GameModel.query().fetch()
 
 class AdminGameEditController(webapp2.RequestHandler):
 	# GET /admin/game/edit
@@ -105,7 +106,8 @@ class AdminPuzzleEditController(webapp2.RequestHandler):
 
 	def get_game(self):
 		id = int(self.request.get('game'))
-		return MOCK_GAMES[id] if id < len(MOCK_GAMES) else None
+
+		#return MOCK_GAMES[id] if id < len(MOCK_GAMES) else None
 
 	def update_puzzle(self):
 		game = self.get_game()

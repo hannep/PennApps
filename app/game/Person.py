@@ -3,7 +3,7 @@ Created on Sep 7, 2013
 
 @author: Phillip
 '''
-from twilio.rest import TwilioRestClient
+#from twilio.rest import TwilioRestClient
 
 class Person(object):
     '''
@@ -13,7 +13,7 @@ class Person(object):
     account_sid = ""
     auth_token = ""
     
-    client = TwilioRestClient(account_sid, auth_token)
+    #client = TwilioRestClient(account_sid, auth_token)
 
     def __init__(self, email, phone, name):
         '''
@@ -26,4 +26,5 @@ class Person(object):
     def sendEmail(self, msg):
         pass
     def sendText(self, msg):
-        message = Person.client.sms.messages.create(to=self.phone, from_=Person.fromNum, body=msg)
+        pass
+        #message = Person.client.sms.messages.create(to=self.phone, from_=Person.fromNum, body=msg)

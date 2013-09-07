@@ -3,7 +3,7 @@ Created on Sep 7, 2013
 
 @author: Phillip
 '''
-import geopy.distance
+#import geopy.distance
 from Key import Key
 from google.appengine.ext import ndb
 
@@ -28,18 +28,19 @@ class LocationKey(Key):
         '''
         super(LocationKey, self).__init__()
         self.value = value
-        self.point = geopy.Point(latitude=latitude, longitude=longitude)
+        #self.point = geopy.Point(latitude=latitude, longitude=longitude)
         self.distance = distance
         
     def gradeAnswer(self, answer):
-        try:
-            dist = geopy.distance.distance(self.point, answer.data).m
-            if dist < self.distance:
-                answer.score = self.value + self.getBonus(self.parent.countCorrectSolutions())
-                answer.markCompleted()
-        except:
-            pass
-        answer.markGraded()
+        pass
+        # try:
+        #     dist = geopy.distance.distance(self.point, answer.data).m
+        #     if dist < self.distance:
+        #         answer.score = self.value + self.getBonus(self.parent.countCorrectSolutions())
+        #         answer.markCompleted()
+        # except:
+        #     pass
+        # answer.markGraded()
         
     @staticmethod
     def createFromAppEngine(self, id):
