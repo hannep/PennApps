@@ -31,4 +31,4 @@ class ImageQuestion(Question):
     def createFromAppEngine(self, id):
         question_query = ImageQuestionModel.query(ImageQuestionModel.id == id)
         question = question_query.fetch(1)[0]
-        return ImageQuestion(question.string)
+        return ImageQuestion(question.url)
