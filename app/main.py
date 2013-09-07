@@ -60,23 +60,64 @@ class AdminGameController(webapp2.RequestHandler):
 class AdminGameEditController(webapp2.RequestHandler):
 	# GET /admin/game/edit
 	def get(self):
-		game = self.game_with_id(int(self.request.get('id')))
+		game = self.get_game()
 		rendered = renderer.render('admin/game/edit.html', { 'game': game })
 		self.response.write(rendered)
 
-	def game_with_id(self, id):
-		return MOCK_GAMES[id]
+	# POST /admin/game/edit
+	def post(self):
+		self.update_game();
+		self.get()
+
+	def get_game(self):
+		id = int(self.request.get('id'))
+		return MOCK_GAMES[id] if id < len(MOCK_GAMES) else None
+
+	def update_game(self):
+		game = self.get_game()
+		if game:
+			game['name'] = self.request.get('name')
+			game['description'] = self.request.get('description')
+		else:
+			game = {
+				'id': self.request.get('id'),
+				'name': self.request.get('name'),
+				'description': self.request.get('description')
+			}
+		MOCK_GAMES[int(game['id'])] = game
 
 class AdminPuzzleEditController(webapp2.RequestHandler):
 	# GET /admin/puzzle/edit
 	def get(self):
-		game = self.game_with_id(int(self.request.get('game')))
-		puzzle = game['puzzles'][int(self.request.get('puzzle'))]
-		rendered = renderer.render('admin/puzzle/edit.html', { 'puzzle': puzzle })
+		game = self.get_game()
+		puzzle_id = int(self.request.get('puzzle'))
+		puzzle = game['puzzles'][puzzle_id] if puzzle_id < len(game['puzzles']) else { 'id': puzzle_id }
+		rendered = renderer.render('admin/puzzle/edit.html', { 
+			'puzzle': puzzle,
+			'puzzle_id': puzzle_id,
+			'game': game['id']
+		})
 		self.response.write(rendered)
 
-	def game_with_id(self, id):
-		return MOCK_GAMES[id]
+	def post(self):
+		self.update_puzzle()
+		self.get()
+
+	def get_game(self):
+		id = int(self.request.get('game'))
+		return MOCK_GAMES[id] if id < len(MOCK_GAMES) else None
+
+	def update_puzzle(self):
+		game = self.get_game()
+		puzzle_id = int(self.request.get('puzzle'))
+		puzzle = game['puzzles'][puzzle_id] if puzzle_id < len(game['puzzles']) else {}
+		puzzle['name'] = self.request.get('name')
+		puzzle['description'] = self.request.get('description')
+		puzzle['answer'] = self.request.get('answer')
+		if puzzle_id < len(game['puzzles']):
+			game['puzzles'][puzzle_id] = puzzle
+		else:
+			game['puzzles'].append(puzzle)
 
 class AdminGameNewController(webapp2.RequestHandler):
 	# GET /admin/game/new
