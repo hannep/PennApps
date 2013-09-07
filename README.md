@@ -3,6 +3,12 @@ PennApps
 
 This is where our PennApps project lives. 
 
-woo woo
+10:30PM - What we're doing right now:
 
-testing ssh keys
+Phil: Looking at overall program design. 
+Hanne: App Engine setup, then Twilio (later pretty interface-y things)
+Chris: Location stuff
+Mark: Understanding App Engine / Cloud Platform
+
+
+
