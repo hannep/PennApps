@@ -9,8 +9,9 @@ from Answer import *
 import fileinput, sys
 # import geopy
 # import geopy.distance
+from time import sleep
 
-game = GameModel(id = "game", duration = -1)
+game = GameModel(id = 0, duration = -1, name = "My Game 1")
 game.put()
 
 admin = AdminModel(phone = "802-279-7097", email = "phroph@yahoo.com", name = "Phillip Huff")
@@ -29,7 +30,9 @@ minigame.put()
 question = TextQuestionModel(string = "What is your favorite color?", id = "testQ")
 question.put()
 
-game = Game.createFromAppEngine("game")
+sleep(1)
+
+game = Game.createFromAppEngine(0)
 print "Users:\n"
 for user in game.users:
     print user.name + " (" + user.email + "): " + user.phone + "\n"
