@@ -1,14 +1,25 @@
-​<!DOCTYPE html>
-{% autoescape true %}
-<html>
+
+<!DOCTYPE html>
+<html lang="en">
   <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     {% include 'includes/bootstrap.html' %}
-    <script type="text/javascript" src="js/main.js"></script>
-    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <title>App</title>
   </head>
   <body>
-    <h1>Message from Python:</h1>
-    <p class="lead">{{ message }}</p>
+    <div class="container">
+      <div class="header">
+        <h3 class="text-muted">{{message}}</h3>
+      </div>
+      <div class="jumbotron">
+        <h1>{{message}}</h1>
+        <p class="lead">{{message}}</p>
+      </div>
+      <div class="footer">
+        <p>&copy; {{message}} 2013</p>
+      </div>
+    </div>
   </body>
 </html>
-{% endautoescape %}
