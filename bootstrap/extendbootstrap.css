@@ -1,0 +1,14 @@
+#countrycode {
+    max-width: 45px; 
+    float: left; 
+    margin-right: 5px;
+}
+
+#cellNum {
+    width: 200px; 
+    float: left; 
+}
+
+#teamName {
+    width: 250px; 
+}

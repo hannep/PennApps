@@ -9,7 +9,7 @@
 
         <!-- Optional theme -->
         <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-theme.min.css">
-
+        <link rel="stylesheet" href="extendbootstrap.css"> 
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>
           <script src="../../assets/js/html5shiv.js"></script>
@@ -35,21 +35,35 @@
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Login <b class="caret"></b></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Menu<b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#">Participant</a></li>
-                            <li><a href="#">Organizer</a></li>
+                            <li role="presentation" class="divider"></li>
+                            <li><a href="#">Choose Another Game</a></li>
                         </ul>
                     </li>
                 </ul>
             </div>
         </nav>
         <div class="col-sm-6 col-sm-offset-3">
-            <form id="form-inline" role="search">
-                <div class="form-group">
-                    <!-- TODO: Need JS to submit on enter -->
-                    <input type="text" class="form-control input-lg" placeholder="Find school/event">
+            <form class="form-horizontal" role="form">
+              <div class="form-group">
+                <label for="teamName" class="col-lg-2 control-label">Team</label>
+                <div class="col-lg-10">
+                  <input type="text" class="form-control" id="teamName" placeholder="Team AwesomeBiscuits">
                 </div>
+              </div>
+              <div class="form-group">
+                <label for="cellNum" class="col-lg-2 control-label">Phone</label>
+                <div class="col-lg-10">
+                    <input type="tel" class="form-control" id="countrycode" value="+1"> 
+                    <input type="tel" class="form-control" id="cellNum" placeholder="0001234567">
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-lg-offset-2 col-lg-10">
+                  <button type="submit" class="btn btn-default">Join Game</button>
+                </div>
+              </div>
             </form>
         </div>
 
