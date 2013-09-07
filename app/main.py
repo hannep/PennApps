@@ -13,10 +13,30 @@ from utils import renderer
 ###
 MOCK_GAMES = [{
 	'id': 0,
-	'name': 'Super awesome game'
+	'name': 'Super awesome game',
+	'description': 'This game is so awesome omg omg.',
+	'participants': [
+		{ 'name': 'Mark Fielbig' },
+		{ 'name': 'Phil Huff' }
+	],
+	'puzzles': [{ 
+		'name': 'mindfuck' ,
+		'description': 'omgwtfsolvethisshit',
+		'answer': '42'
+	}]
 }, {
 	'id': 1,
-	'name': 'Not so awesome game'
+	'name': 'Not so awesome game',
+	'description': 'Weeeeeeeeak.',
+	'participants': [
+		{ 'name': 'Mark Fielbig' },
+		{ 'name': 'Phil Huff' }
+	],
+	'puzzles': [{ 
+		'name': 'lolwhat?' ,
+		'description': 'easssssy',
+		'answer': ':)'
+	}]
 }]
 
 ###
@@ -47,6 +67,17 @@ class AdminGameEditController(webapp2.RequestHandler):
 	def game_with_id(self, id):
 		return MOCK_GAMES[id]
 
+class AdminPuzzleEditController(webapp2.RequestHandler):
+	# GET /admin/puzzle/edit
+	def get(self):
+		game = self.game_with_id(int(self.request.get('game')))
+		puzzle = game['puzzles'][int(self.request.get('puzzle'))]
+		rendered = renderer.render('admin/puzzle/edit.html', { 'puzzle': puzzle })
+		self.response.write(rendered)
+
+	def game_with_id(self, id):
+		return MOCK_GAMES[id]
+
 class AdminGameNewController(webapp2.RequestHandler):
 	# GET /admin/game/new
 	def get(self):
@@ -70,5 +101,6 @@ application = webapp2.WSGIApplication([
 	('/admin/game', AdminGameController),
 	('/admin/game/edit', AdminGameEditController),
 	('/admin/game/new', AdminGameNewController),
+	('/admin/puzzle/edit', AdminPuzzleEditController),
     ('/', IndexController)
 ], debug=True)
