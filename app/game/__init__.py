@@ -10,23 +10,24 @@ import fileinput, sys
 import geopy
 import geopy.distance
 
-#game = GameModel(id = "game", duration = -1)
-#game.put()
+game = GameModel(id = "game", duration = -1)
+game.put()
 
-#admin = AdminModel(phone = "802-279-7097", email = "phroph@yahoo.com", name = "Phillip Huff")
-#admin.put()
+admin = AdminModel(phone = "802-279-7097", email = "phroph@yahoo.com", name = "Phillip Huff")
+admin.put()
 
-#user = UserModel(phone = "867-5309", email="", name="Team Awesome")
-#user.put()
+user = UserModel(phone = "867-5309", email="", name="Team Awesome")
+user.put()
 
-#key = TextKeyModel(id = "testK", value = 5, answers = ["blue", "yellow"])
-#key.put()
+key = TextKeyModel(id = "testK", value = 5, answers = ["blue", "yellow"],
+                   first = 5, second = 3, third = 1)
+key.put()
 
-#minigame = MinigameModel(id = "Monty-Python", questionId="testQ", keyId="testK", key_type = "text", question_type="text", retries=0)
-#minigame.put()
+minigame = MinigameModel(id = "Monty-Python", questionId="testQ", keyId="testK", key_type = "text", question_type="text", retries=0)
+minigame.put()
 
-#question = TextQuestionModel(string = "What is your favorite color?", id = "testQ")
-#question.put()
+question = TextQuestionModel(string = "What is your favorite color?", id = "testQ")
+question.put()
 
 game = Game.createFromAppEngine("game")
 print "Users:\n"
