@@ -3,9 +3,12 @@ PennApps
 
 This is where our PennApps project lives. 
 
+10:30PM - What we're doing right now:
 
-Here's some test stuff! What actually happens when there are 
+Phil: Looking at overall program design. 
+Hanne: App Engine setup, then Twilio (later pretty interface-y things)
+Chris: Location stuff
+Mark: Understanding App Engine / Cloud Platform
 
-woo woo
 
-I've added some text in my test branch. I'm a rebel.
+
