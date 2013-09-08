@@ -40,26 +40,21 @@
         </nav>
 
  <div id="content-area" class="container">
-    <h1 id="game-name">Game Name</h1> 
-    <div class="info-text">
-        <p> Here is some infotext. Lorem ipsum dolor sit amet blah blah blah. Shall I compare thee to a summer's day? Thou art more lovely and more temperate. Rough winds do shake the darling buds of May, and summer's lease can't solve this puzzle. Add button </p> 
-    </div>
-    
-    <h3 id="challenge-list">Challenges</h3>
-    <table class="table table-striped">
-	{% for challenge in game.minigames %}
+    <h1 id="stream-header">Live Updates</h1> 
+       <table class="table">
         <tr>
-	    <form id="{{loop.index0}}">
-		<input type="hidden" value="{{challenge.name}}" name="puzzleId"/>
-		<input type="hidden" value="{{number}}" name="number"/>
-                <a href="/challenge" onclick="document.forms['{{loop.index0}}'].submit()"><td id="challenge-id">{{challenge.name}}</td>
-                <td><span class="glyphicon glyphicon-ok-sign"</span></td></a>
-	    </form>
+            <td id="update-timestamp">07:14PM</td>
+            <td id="update-text">The game has been extended until 8PM.</td>
         </tr>
-	{% endfor %}
-    </table>
+        <tr>
+            <td id="update-timestamp">06:58PM</td>
+            <td id="update-text">A question was asked regarding the answer format of Puzzle #2. Please use MM/DD/YYYY format.</td>
+        </tr>
+
+        </table>
 </div>
     </body> 
 </html> 
+
 
 
