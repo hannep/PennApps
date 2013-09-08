@@ -9,6 +9,8 @@ handlers:
   static_dir: frontend/css
 - url: /js
   static_dir: frontend/js
+- url: /fonts
+  static_dir: frontend/fonts
 - url: /.*
   script: main.application
 
