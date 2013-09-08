@@ -49,14 +49,18 @@
     <div id="submission-box">
         <form class="form-horizontal" role="form">
               <div class="form-group">
-                <div class="col-lg-10">
-                  <input type="text" class="form-control" id="subject" placeholder="Subject">
-                </div>
-              </div>
-              <div class="form-group">
-                <div class="col-lg-10">
-                    <textarea class="form-control" rows="5" id="message" placeholder="Type your message here."></textarea>
-                </div>
+                <div class="input-group input-group-lg fancy-entry">
+                  <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
+                  <input type="text" class="form-control text-answer" placeholder="Enter your answer">
+                </div>   
+                <div class="input-group input-group-lg fancy-entry">
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-camera"></span></span>
+                    <input type="button" class="btn btn-default btn-lg flat-left" name="upload-pic" value="Upload Photo">
+                </div>       
+                <div class="input-group input-group-lg fancy-entry">
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-map-marker"></span></span>
+                    <input type="button" class="btn btn-default btn-lg flat-left" name="upload-pic" value="Attach Current Location">
+                </div>                 
               </div>
               <div class="form-group">
                 <div class="col-lg-offset-2 col-lg-10">

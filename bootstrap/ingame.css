@@ -30,6 +30,22 @@
     padding-bottom: 1px; 
 }
 
+.fancy-entry{
+    margin: 0 auto; 
+    margin-bottom: 10px; 
+    max-width: 340px; 
+}
+
+.flat-left{
+    border-radius: 0px 5px 5px 0px;
+    width: 289px; 
+    text-align: left; 
+}
+
+.text-answer{
+    color: #333; 
+}
+
 nav {
     opacity: .25;
 }
