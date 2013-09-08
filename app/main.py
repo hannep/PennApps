@@ -10,7 +10,11 @@ import urllib
 from utils import renderer
 from game import *
 
-game = Game(name='Game', description='Default game')
+game = Game(name='Stony Brook Puzzle Hunt 2013', description='Explore the campus and solve puzzles in this semesters exciting puzzle hunt! Prizes will be provided to the top 3 teams.')
+minigame = Minigame("The Secret Letter", "I USED TO THINK I WAS INDECISIVE, BUT NOW I'M NOT SO SURE.", "What do I say? Q BAWK HI HZQUF Q XVA QUKWTQAQDW, GBH UIX Q'C UIH AI ABEW.")
+game.minigames["The Secret Letter"] = minigame
+minigame = Minigame("The Forrester's Riddle", "a splinter", "I went into the woods and got it. I sat down to seek it. I brought it home with me because I couldn't find it. What is it?")
+game.minigames["The Forrester's Riddle"] = minigame
 messages = []
 
 ###
