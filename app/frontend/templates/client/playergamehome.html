@@ -54,7 +54,9 @@
 		<input type="hidden" value="{{number}}" name="number"/>
         <td id="challenge-id">{{challenge.name}}</td>
         <td>
+	    {% if game.userHasCompleted(challenge.name, number) %}
             <span class="glyphicon glyphicon-ok-sign"</span>
+            {% endif %}
         </td>
 	    </form>
         </tr>

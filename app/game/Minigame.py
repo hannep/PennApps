@@ -55,7 +55,7 @@ class Minigame(object):
     def verify(self, answer):
         #self.answer.gradeAnswer(answer)
         #return answer.isComplete
-        success = answer.data == self.answer
+        success = answer.data.lower() == self.answer.lower()
         if success:
             answer.score = 5
             answer.isComplete = True
