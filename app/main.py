@@ -122,8 +122,8 @@ class PuzzleAnswerController(webapp2.RequestHandler):
 # Routes
 ###
 application = webapp2.WSGIApplication([
-	('/admin/game', AdminGameController),
-	('/admin/game/edit', AdminGameEditController),
+	('/admin', AdminGameController),
+	('/admin/edit', AdminGameEditController),
 	('/admin/puzzle/edit', AdminPuzzleEditController),
     ('/', IndexController)
 ], debug=True)
