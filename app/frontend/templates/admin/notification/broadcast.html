@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    {% include 'includes/bootstrap.html' %}
+    <title>Admin - Broadcast</title>
+  </head>
+  <body>
+  	<div class="container">
+  	  <div class="header">
+        <h3 class="text-muted"><a href="/admin">Admin Console</a></h3>
+      </div>
+      <div class="jumbotron">
+        <h1>Send a broadcast notification</h1>
+        <form class="form-inline" role="form" method="post">
+          <div class="form-group">
+            <label class="sr-only" for="message">Message</label>
+            <textarea class="form-control" id="message" name="message" cols="150" rows="5" placeholder="Enter a message"></textarea>
+          </div>
+          <br/>
+          <button type="submit" class="btn btn-default">Send</button>
+          <a class="btn btn-default" href="/admin">Back</a>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
