@@ -34,7 +34,10 @@
     <h3>{{message}}</h3>
     <h1 id="challenge-name">{{challenge.name}}</h1> 
     <div class="info-text">
-        <p>{{challenge.question}}</p> 
+        <p>{{challenge.question.text}}</p> 
+	{% if challenge.question.url != "" %}
+	<p><img src="{{challenge.question.url}}"/></p>
+	{% endif %}
     </div>
     <div id="submission-box">
         <form class="form-horizontal" role="form" method="post">
