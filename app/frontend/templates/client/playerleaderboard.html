@@ -40,7 +40,7 @@
         {% for user in users %}
             <tr>
                 <td>{{user.name}}</td>
-                <td>{{user.getPuzzlesCompleted()}}</td>
+                <td>{{user.getNumCompletedPuzzles()}}</td>
                 <td>{{user.getScore()}}</td> 
             </tr>
         {% endfor %}
