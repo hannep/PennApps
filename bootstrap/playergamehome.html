@@ -47,39 +47,16 @@
     
     <h3 id="challenge-list">Challenges</h3>
     <table class="table table-striped">
+	{% for challenge in game.minigames %}
         <tr>
-            <td id="challenge-id">Challenge One</td>
-            <td><span class="glyphicon glyphicon-ok-sign"</span></td>
+	    <form id="{{loop.index0}}">
+		<input type="hidden" value="{{challenge.name}}" name="puzzleId"/>
+		<input type="hidden" value="{{number}}" name="number"/>
+                <a href="/challenge" onclick="document.forms['{{loop.index0}}'].submit()"><td id="challenge-id">{{challenge.name}}</td>
+                <td><span class="glyphicon glyphicon-ok-sign"</span></td></a>
+	    </form>
         </tr>
-        <tr>
-            <td>Name</td>
-            <td><span class="glyphicon glyphicon-ok-sign"</span></td>
-        </tr>
-        <tr>
-            <td>Other Name</td>
-             <td></td>
-
-        </tr>
-        <tr>
-            <td>Blahblah</td>
-             <td><span class="glyphicon glyphicon-ok-sign"</span></td>
-
-        </tr>
-        <tr>
-            <td>That puzzle</td>
-             <td></td>
-
-        </tr>
-        <tr>
-            <td>Foo</td>
-             <td></td>
-
-        </tr>
-        <tr>
-            <td>Food</td>
-             <td></td>
-
-        </tr>
+	{% endfor %}
     </table>
 </div>
     </body> 
