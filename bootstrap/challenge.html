@@ -9,7 +9,7 @@
 
         <!-- Optional theme -->
         <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-theme.min.css">
-        <link rel="stylesheet" href="initial.css"> 
+        <link rel="stylesheet" href="ingame.css"> 
 
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>
@@ -39,19 +39,27 @@
                 </ul>
             </div>
         </nav>
-        <div id="finder" class="col-md-6 col-md-offset-3">
-            <h1>Ready for an adventure?</h1> 
-            <form id="form-inline" role="search">
-                <div class="form-group">
-                    <!-- TODO: Need JS to submit on enter -->
-                    <input type="text" class="form-control input-lg" placeholder="Find your event.">
-                </div>
-            </form>
-        </div>
 
-        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-        <script src="http://code.jquery.com/jquery.js"></script>
-        <!-- Latest compiled and minified JavaScript -->
-        <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
-    </body>
-</html>
+ <div id="message-box" class="container">
+            <h1>Get help.</h1> 
+            <form class="form-horizontal" role="form">
+              <div class="form-group">
+                <div class="col-lg-10">
+                  <input type="text" class="form-control" id="subject" placeholder="Subject">
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-lg-10">
+                    <textarea class="form-control" rows="5" id="message" placeholder="Type your message here."></textarea>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-lg-offset-2 col-lg-10">
+                  <button type="submit" id="send-question" class="btn btn-primary btn-lg">Submit</button>
+                </div>
+              </div>
+            </form>
+    </div>
+    </body> 
+</html> 
+
