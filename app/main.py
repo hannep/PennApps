@@ -94,7 +94,7 @@ class PuzzleAnswerController(webapp2.RequestHandler):
 		type = self.request.get("type").lower()
 		data = None
 		if type == "text":
-			data = self.request.get("text")
+			data = self.request.get("message")
 		elif type == "image":
 			data = self.request.get("url")
 		elif type == "location":
