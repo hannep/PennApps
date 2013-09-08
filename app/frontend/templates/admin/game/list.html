@@ -15,11 +15,8 @@
       <div class="jumbotron">
         <h1>Games you are an admin for</h1>
         <ul>
-        	{% for game in games %}
-        	<li><a href="/admin/game/edit?id={{game.id}}">{{game.name}}</a></li>
-        	{% endfor %}
-		</ul>
-		<a class="btn btn-default" href="/admin/game/new">Add a new game</a>
+        	<li><a href="/admin/game/edit">{{game.name}}</a></li>
+		    </ul>
       </div>
     </div>
   </body>

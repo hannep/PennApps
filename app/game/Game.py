@@ -19,8 +19,7 @@ class Game(object):
     '''
     classdocs
     '''
-    def __init__(self, id, name, admins = list(), users = list(), minigames = list(), duration = -1, description = ""):
-        self.id = id
+    def __init__(self, name, admins = list(), users = list(), minigames = list(), duration = -1, description = ""):
         self.name = name
         self.description = description
         self.admins = list()
