@@ -12,7 +12,7 @@ import fileinput, sys
 # import geopy.distance
 from time import sleep
 
-game = GameModel(id = 0, duration = -1, name = "My Game 1")
+game = GameModel(id = 0, duration = -1, name = "My Game 1", description = "Omg super fun game guys lolol!!1")
 game.put()
 
 def loadSampleData():
