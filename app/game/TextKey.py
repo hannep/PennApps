@@ -39,6 +39,7 @@ class TextKey(Key):
         except:
             pass
         answer.markGraded()
+        
     @staticmethod
     def createFromAppEngine(id):
         key_query = TextKeyModel.query(TextKeyModel.id == id)

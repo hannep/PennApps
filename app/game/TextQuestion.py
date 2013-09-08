@@ -18,11 +18,12 @@ class TextQuestion(Question):
     '''
 
 
-    def __init__(self, text = "", parent = None):
+    def __init__(self, text = "", url = "", parent = None):
         '''
         Constructor
         '''
         self.text = text
+        self.url = url
         super(TextQuestion, self).__init__(parent)
         
     def getTextRepresentation(self):

@@ -39,7 +39,7 @@ class Minigame(object):
         if key == None:
             return
         key.parent = self
-        self.key = key
+        self.answer = key
         
     def setQuestion(self, question):
         if question == None:
@@ -53,6 +53,8 @@ class Minigame(object):
         return False
     
     def verify(self, answer):
+        #self.answer.gradeAnswer(answer)
+        #return answer.isComplete
         success = answer.data == self.answer
         if success:
             answer.score = 5
