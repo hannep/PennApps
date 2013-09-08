@@ -129,12 +129,13 @@ class PuzzleSelectionController(webapp2.RequestHandler):
 		self.redirect('/challenge')
 		
 class PuzzleAnswerController(webapp2.RequestHandler):
-	def get(self):
+	def get(self, message=''):
 		puzzle = game.minigames[self.request.get('puzzleId')]
 		number = self.request.get('number')
 		rendered = renderer.render('client/challenge.html', { 
 			'challenge': puzzle,
-			'number': number  
+			'number': number,
+			'message': message
 		})
 		self.response.write(rendered)
 		
@@ -159,12 +160,8 @@ class PuzzleAnswerController(webapp2.RequestHandler):
 			self.response.write("Something went wrong.")
 		answer = Answer(user, minigame, data)
 		resp = game.checkAnswer(minigame, answer)
-		if resp:
-			# Right
-			self.get()
-		else:
-			# Wrong
-			self.get()
+		self.get('Correct!' if resp else 'Wrong!')
+
 ###
 # Routes
 ###
