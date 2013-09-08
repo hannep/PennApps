@@ -13,7 +13,6 @@ from game import *
 game = Game(name='Stony Brook Puzzle Hunt 2013', description='Explore the campus and solve puzzles in this semesters exciting puzzle hunt! Prizes will be provided to the top 3 teams.')
 game.minigames["The Secret Letter"] = Minigame("The Secret Letter", "I USED TO THINK I WAS INDECISIVE, BUT NOW I'M NOT SO SURE.", TextQuestion("What do I say? Q BAWK HI HZQUF Q XVA QUKWTQAQDW, GBH UIX Q'C UIH AI ABEW."))
 game.minigames["The Forrester's Riddle"] = Minigame("The Forrester's Riddle", "a splinter", TextQuestion("I went into the woods and got it. I sat down to seek it. I brought it home with me because I couldn't find it. What is it?"))
-game.minigames["Mark Your Calendars"] = Minigame(name="Mark Your Calendars",answer="Wednesday",question=TextQuestion("We keep our SBCS calendar on Hanne Paine’s personal website. Unfortunately, her website has come under consistent DDoS attacks from an unknown source. Luckily, Hanne cleverly put a failsafe for emergency measures in her system to send her a message in the case of such site inaccessibility. What does her failsafe message say?",urllib.urlencode("http://fc04.deviantart.net/fs70/f/2013/251/a/2/stashthisshit_by_valaraukador-d6lhohd.png")))
 messages = []
 
 ###
