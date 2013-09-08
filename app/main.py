@@ -160,9 +160,11 @@ class PuzzleAnswerController(webapp2.RequestHandler):
 		answer = Answer(user, minigame, data)
 		resp = game.checkAnswer(minigame, answer)
 		if resp:
-			self.response.write("Success!")
+			# Right
+			self.get()
 		else:
-			self.response.write("Incorrect.")
+			# Wrong
+			self.get()
 ###
 # Routes
 ###
