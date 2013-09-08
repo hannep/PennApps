@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Puzzler</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- Bootstrap -->
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="ingame.css"> 
+
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+          <script src="../../assets/js/html5shiv.js"></script>
+          <script src="../../assets/js/respond.min.js"></script>
+        <![endif]-->
+
+        <style>
+
+        </style>
+    </head>
+    <body>
+        <nav class="navbar navbar-default" role="navigation">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Puzzler</a>
+            </div>
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                   <li> <a href="#">Organizer Login</a> </li> 
+                </ul>
+            </div>
+        </nav>
+
+ <div id="content-area" class="container">
+    <h1 id="challenge-name">Game Name</h1> 
+    <div class="info-text">
+        <p> Here is some infotext. Lorem ipsum dolor sit amet blah blah blah. Shall I compare thee to a summer's day? Thou art more lovely and more temperate. Rough winds do shake the darling buds of May, and summer's lease can't solve this puzzle. Add button </p> 
+    </div>
+    
+    <h3 id="challenge-list">Challenges</h3>
+    <table class="table table-striped">
+	{% for challenge in game.minigames %}
+        <tr>
+	    <form id="{{loop.index0}}">
+		<input type="hidden" value="{{challenge.name}}" name="puzzleId"/>
+		<input type="hidden" value="{{number}}" name="number"/>
+                <a href="/challenge" onclick="document.forms['{{loop.index0}}'].submit()"><td id="challenge-id">{{challenge.name}}</td>
+                <td><span class="glyphicon glyphicon-ok-sign"</span></td></a>
+	    </form>
+        </tr>
+	{% endfor %}
+    </table>
+</div>
+    </body> 
+</html> 
+
+
