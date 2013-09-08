@@ -62,6 +62,15 @@ class AdminPuzzleEditController(webapp2.RequestHandler):
 			puzzle.question = self.request.get('question')
 		self.get()
 
+class AdminNotificationController(webapp2.RequestHandler):
+	def get(self):
+		rendered = renderer.render('admin/notification/broadcast.html', {})
+		return self.response.write(rendered)
+
+	def post(self):
+		game.notifyUsers(self.request.get('message'))
+		self.get()
+
 class RegisterTeamController(webapp2.RequestHandler):
 	def get(self):
 		rendered = renderer.render('client/registerteam.html', {})
@@ -74,7 +83,7 @@ class RegisterTeamController(webapp2.RequestHandler):
 		name = self.request.get('teamName')
 		user = User(phone_number, name)
 		game.users.append(user)
-		self.response.write(str(user))
+		self.response.write('done')
 	
 class PuzzleAnswerController(webapp2.RequestHandler):
 	def post(self):
@@ -107,5 +116,6 @@ application = webapp2.WSGIApplication([
 	('/admin', AdminGameController),
 	('/admin/edit', AdminGameEditController),
 	('/admin/puzzle/edit', AdminPuzzleEditController),
+	('/admin/notify', AdminNotificationController),
     ('/', RegisterTeamController)
 ], debug=True)
