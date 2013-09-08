@@ -24,17 +24,15 @@ class Minigame(object):
     classdocs
     '''
 
-    def __init__(self,identifier="",question=None,key=None,answers=list(),numRetries=0):
+    def __init__(self, name, answer, question=None, answers=list(), numRetries=0):
         '''
         Constructor
         '''
-        self.id = identifier
+        self.name = name
+        self.answer = answer
         self.question = None
-        self.key = None
         self.setQuestion(question)
-        self.setKey(key)
         self.answers = answers
-        self.parent = None
         self.numRetries = numRetries
         
     def setKey(self, key):
@@ -46,7 +44,6 @@ class Minigame(object):
     def setQuestion(self, question):
         if question == None:
             return
-        question.parent = self
         self.question = question
         
     def hasCompleted(self, user):

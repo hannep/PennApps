@@ -22,8 +22,8 @@
           </div>
           <h2>Description</h2>
           <div class="form-group">
-            <label class="sr-only" for="description">Description</label>
-            <textarea class="form-control" id="description" name="description" cols="150" rows="5" placeholder="Enter the puzzle's description">{{puzzle.description}}</textarea>
+            <label class="sr-only" for="question">Question</label>
+            <textarea class="form-control" id="question" name="question" cols="150" rows="5" placeholder="Enter the puzzle's question">{{puzzle.question}}</textarea>
           </div>
           <h2>Answer</h2>
           <div class="form-group">
@@ -32,9 +32,8 @@
           </div>
           <hr/>
           <button type="submit" class="btn btn-default">Update</button>
-          <a class="btn btn-default" href="/admin/game">Back</a>
+          <a class="btn btn-default" href="/admin/edit">Back</a>
           <input type="hidden" name="game" value="{{game}}">
-          <input type="hidden" name="puzzle" value="{{puzzle_id}}">
         </form>
       </div>
     </div>
