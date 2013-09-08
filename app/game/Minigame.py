@@ -69,7 +69,8 @@ class Minigame(object):
         for answer in self.answers:
             if answer.owner == user:
                 counter = counter + 1
-        return (counter - 1) < self.numRetries
+        return True
+        #return (counter - 1) < self.numRetries
     
     def countCorrectSolutions(self):
         counter = 0
