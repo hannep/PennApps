@@ -6,7 +6,7 @@ Created on Sep 7, 2013
 from Question import Question
 from google.appengine.ext import ndb
 
-class ImageQuestionModel(ndb.Model):
+class CompositeQuestionModel(ndb.Model):
     id = ndb.StringProperty()
     string = ndb.StringProperty(indexed=False)
     url = ndb.StringProperty(indexed=False)
@@ -31,6 +31,6 @@ class CompositeQuestion(Question):
     
     @staticmethod
     def createFromAppEngine(self, id):
-        question_query = ImageQuestionModel.query(ImageQuestionModel.id == id)
+        question_query = CompositeQuestionModel.query(CompositeQuestionModel.id == id)
         question = question_query.fetch(1)[0]
         return CompositeQuestion(question.string, question.url)

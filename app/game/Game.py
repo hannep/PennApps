@@ -15,12 +15,11 @@ class GameModel(ndb.Model):
     name = ndb.StringProperty()
     description = ndb.StringProperty()
     duration = ndb.IntegerProperty()
-
 class Game(object):
     '''
     classdocs
     '''
-    def __init__(self, id, name, description, admins = list(), users = list(), minigames = list(), duration = -1):
+    def __init__(self, id, name, admins = list(), users = list(), minigames = list(), duration = -1, description = ""):
         self.id = id
         self.name = name
         self.description = description

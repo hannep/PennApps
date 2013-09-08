@@ -4,11 +4,12 @@ Created on Sep 7, 2013
 @author: Phillip
 '''
 
+from google.appengine.ext import ndb
+ 
 class Answer(object):
     '''
     classdocs
     '''
-
 
     def __init__(self, owner, minigameId, data = None):
         '''

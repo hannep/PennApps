@@ -136,7 +136,32 @@ class AdminGameNewController(webapp2.RequestHandler):
 	def add_game(self, game):
 		# TODO: Insert Game object and return id
 		return 0
-
+	
+class PuzzleAnswerController(webapp2.RequestHandler):
+	def post(self):
+		type = self.request.get("type").lower()
+		data = None
+		if type == "text":
+			data = self.request.get("text")
+		elif type == "image":
+			data = self.request.get("url")
+		elif type == "location":
+			lat = self.request.get("latitude")
+			long = self.request.get("longitude")
+			data = geopy.Point(latitude = lat, longitude = long)
+		minigame = self.request.get("puzzleId")
+		number = self.request.get("number")
+		#get user from number
+		user_query = UserModel.query(UserModel.phone == number)
+		users = user_query.fetch(1)
+		user = None
+		if len(users) > 0:
+			user = users[0]
+		else:
+			return
+		answer = Answer(user, minigame, data)
+		#get singleton Game object
+		
 ###
 # Routes
 ###
