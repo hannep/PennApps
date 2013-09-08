@@ -109,6 +109,14 @@ class HelpController(webapp2.RequestHandler):
 		})
 		self.get()
 	
+class LeaderboardController(webapp2.RequestHandler):
+	def get(self):
+		sorted_users = game.sortUsersByScore()
+		rendered = renderer.render('client/playerleaderboard.html', {
+			'users': sorted_users
+		})
+		self.response.write(rendered)
+
 class PuzzleSelectionController(webapp2.RequestHandler):
 	def get(self):
 		rendered = renderer.render('client/playergamehome.html', { 
@@ -166,5 +174,6 @@ application = webapp2.WSGIApplication([
 	('/challenge', PuzzleAnswerController),
 	('/puzzles', PuzzleSelectionController),
 	('/help', HelpController),
+	('/scores', LeaderboardController),
     ('/', RegisterTeamController)
 ], debug=True)

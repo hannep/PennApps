@@ -60,7 +60,7 @@ class Minigame(object):
             answer.owner.completedMinigames[answer.id] = answer
         answer.isGraded = True
         self.answers.append(answer)
-        return 
+        return success
     
     def canAnswer(self, user):
         counter = 0
