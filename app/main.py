@@ -10,6 +10,7 @@ from utils import renderer
 from game import *
 
 game = Game(name='Game', description='Default game')
+messages = []
 
 ###
 # Controllers
@@ -64,7 +65,7 @@ class AdminPuzzleEditController(webapp2.RequestHandler):
 
 class AdminNotificationController(webapp2.RequestHandler):
 	def get(self):
-		rendered = renderer.render('admin/notification/broadcast.html', {})
+		rendered = renderer.render('admin/notification/broadcast.html', { 'messages': messages })
 		return self.response.write(rendered)
 
 	def post(self):
@@ -84,6 +85,20 @@ class RegisterTeamController(webapp2.RequestHandler):
 		user = User(phone_number, name)
 		game.users.append(user)
 		self.response.write('done')
+
+class HelpController(webapp2.RequestHandler):
+	def get(self):
+		rendered = renderer.render('client/gethelp.html', {})
+		self.response.write(rendered)
+
+	def post(self):
+		subject = self.request.get('subject')
+		message = self.request.get('message')
+		messages.append({
+			'subject': subject,
+			'message': message
+		})
+		self.get()
 	
 class PuzzleAnswerController(webapp2.RequestHandler):
 	def get(self):
@@ -126,5 +141,6 @@ application = webapp2.WSGIApplication([
 	('/admin/puzzle/edit', AdminPuzzleEditController),
 	('/admin/notify', AdminNotificationController),
 	('/challenge', PuzzleAnswerController),
+	('/help', HelpController),
     ('/', RegisterTeamController)
 ], debug=True)
