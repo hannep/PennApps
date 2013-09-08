@@ -86,11 +86,15 @@ class RegisterTeamController(webapp2.RequestHandler):
 		self.response.write('done')
 	
 class PuzzleAnswerController(webapp2.RequestHandler):
+	def get(self):
+		rendered = renderer.render('client/challenge.html', {})
+		self.response.write(rendered)
+		
 	def post(self):
 		type = self.request.get("type").lower()
 		data = None
 		if type == "text":
-			data = self.request.get("text")
+			data = self.request.get("message")
 		elif type == "image":
 			data = self.request.get("url")
 		elif type == "location":
@@ -99,16 +103,20 @@ class PuzzleAnswerController(webapp2.RequestHandler):
 			data = geopy.Point(latitude = lat, longitude = long)
 		minigame = self.request.get("puzzleId")
 		number = self.request.get("number")
-		#get user from number
-		user_query = UserModel.query(UserModel.phone == number)
-		users = user_query.fetch(1)
 		user = None
-		if len(users) > 0:
-			user = users[0]
-		else:
-			return
+		for usr in game.users:
+			if usr.phone == number:
+				user = usr
+		if user == None:
+			self.response.write("Something went wrong.")
 		answer = Answer(user, minigame, data)
-		
+		resp = game.checkAnswer(minigame, answer)
+		if resp:
+			self.response.write("Success!")
+		elif game.minigames[minigame].key.isHandGraded:
+			self.response.write("Waiting for grading.")
+		else:
+			self.response.write("Incorrect.")
 ###
 # Routes
 ###
@@ -117,5 +125,6 @@ application = webapp2.WSGIApplication([
 	('/admin/edit', AdminGameEditController),
 	('/admin/puzzle/edit', AdminPuzzleEditController),
 	('/admin/notify', AdminNotificationController),
+	('/challenge', PuzzleAnswerController),
     ('/', RegisterTeamController)
 ], debug=True)

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Puzzler</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- Bootstrap -->
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="ingame.css"> 
+    </head>
+    <body>
+        <nav class="navbar navbar-default" role="navigation">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Puzzler</a>
+            </div>
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                   <li> <a href="#">Organizer Login</a> </li> 
+                </ul>
+            </div>
+        </nav>
+
+ <div id="content-area" class="container">
+    <h1 id="challenge-name">Connect the Dots</h1> 
+    <div class="info-text">
+        <p> Here is some infotext. Lorem ipsum dolor sit amet blah blah blah. Shall I compare thee to a summer's day? Thou art more lovely and more temperate. Rough winds do shake the darling buds of May, and summer's lease can't solve this puzzle. Add button </p> 
+    </div>
+    <img src="escher.jpg" class="challenge-image" alt="Puzzling."></img>
+    <div id="submission-box">
+        <form class="form-horizontal" role="form">
+              <div class="form-group">
+                <div class="col-lg-10">
+                  <input type="text" class="form-control" id="subject" name="subject" placeholder="Subject">
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-lg-10">
+                    <textarea class="form-control" rows="5" id="message" placeholder="Type your message here." name="message"></textarea>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-lg-offset-2 col-lg-10">
+                  <button type="submit" id="send-question" class="btn btn-primary btn-lg">Submit</button>
+                </div>
+              </div>
+            </form>
+
+    </div>
+</div>
+    </body> 
+</html> 
+
