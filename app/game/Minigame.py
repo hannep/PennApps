@@ -53,7 +53,14 @@ class Minigame(object):
         return False
     
     def verify(self, answer):
-        return answer.data == self.answer
+        success = answer.data == self.answer
+        if success:
+            answer.score = 5
+            answer.isComplete = True
+            answer.owner.completedMinigames[answer.id] = answer
+        answer.isGraded = True
+        self.answers.append(answer)
+        return 
     
     def canAnswer(self, user):
         counter = 0
