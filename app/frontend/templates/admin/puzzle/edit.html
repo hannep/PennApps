@@ -23,7 +23,7 @@
           <h2>Description</h2>
           <div class="form-group">
             <label class="sr-only" for="question">Question</label>
-            <textarea class="form-control" id="question" name="question" cols="150" rows="5" placeholder="Enter the puzzle's question">{{puzzle.question.text}}</textarea>
+            <textarea class="form-control" id="question" name="question" cols="150" rows="5" placeholder="Enter the puzzle's question">{% if puzzle.question is defined %}{{puzzle.question.text}}{% endif %}</textarea>
           </div>
           <h2>Answer</h2>
           <div class="form-group">
