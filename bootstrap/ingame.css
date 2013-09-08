@@ -35,6 +35,7 @@ nav {
 }
 body {
     background-color: rbg(57,57,57); 
+    /*Change this!*/
     background: url(graypattern.png) repeat;
    /*
     content: "";
