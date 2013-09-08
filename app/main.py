@@ -100,6 +100,14 @@ class HelpController(webapp2.RequestHandler):
 		})
 		self.get()
 	
+class PuzzleSelectionController(webapp2.RequestHandler):
+	def get(self):
+		rendered = renderer.render('client/playergamehome.html', {})
+		self.response.write(rendered)
+		
+	def post(self):
+		self.redirect('/challenge')
+		
 class PuzzleAnswerController(webapp2.RequestHandler):
 	def get(self):
 		rendered = renderer.render('client/challenge.html', {})
@@ -141,6 +149,7 @@ application = webapp2.WSGIApplication([
 	('/admin/puzzle/edit', AdminPuzzleEditController),
 	('/admin/notify', AdminNotificationController),
 	('/challenge', PuzzleAnswerController),
+	('/puzzles', PuzzleSelectionController),
 	('/help', HelpController),
     ('/', RegisterTeamController)
 ], debug=True)

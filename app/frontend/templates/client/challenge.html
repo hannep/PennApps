@@ -37,7 +37,9 @@
     </div>
     <img src="escher.jpg" class="challenge-image" alt="Puzzling."></img>
     <div id="submission-box">
-        <form class="form-horizontal" role="form">
+        <form class="form-horizontal" role="form" method="post">
+	      <input type="hidden" value="{{challenge.name}}" name="puzzleId"/>
+	      <input type="hidden" value="{{number}}" name="number"/>
               <div class="form-group">
                 <div class="col-lg-10">
                   <input type="text" class="form-control" id="subject" name="subject" placeholder="Subject">
