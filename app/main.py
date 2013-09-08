@@ -49,7 +49,7 @@ class AdminGameEditController(webapp2.RequestHandler):
 class AdminPuzzleEditController(webapp2.RequestHandler):
 	# GET /admin/puzzle/edit
 	def get(self):
-		puzzle = game.minigames.get(self.request.get('name'))
+		puzzle = game.minigames.get(urllib.unquote(self.request.get('puzzle')))
 		rendered = renderer.render('admin/puzzle/edit.html', { 'puzzle': puzzle })
 		self.response.write(rendered)
 
