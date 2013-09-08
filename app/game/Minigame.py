@@ -53,12 +53,7 @@ class Minigame(object):
         return False
     
     def verify(self, answer):
-        if self.key.isHandGraded:
-            self.parent.notifyAdmins("An answer needs grading.")
-        else:
-            self.key.gradeAnswer(answer)
-        self.answers.append(answer)
-        return answer.isComplete
+        return answer.data == self.answer
     
     def canAnswer(self, user):
         counter = 0

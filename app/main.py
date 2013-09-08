@@ -2,6 +2,7 @@
 # Library imports
 ###
 import webapp2
+import urllib
 
 ###
 # App imports
@@ -83,8 +84,16 @@ class RegisterTeamController(webapp2.RequestHandler):
 		phone_number = country_code + mobile_number
 		name = self.request.get('teamName')
 		user = User(phone_number, name)
-		game.users.append(user)
-		self.response.write('done')
+		append_user = True
+		for usr in game.users:
+			if usr.phone == user.phone:
+				append_user = False
+				break
+		if append_user:
+			game.users.append(user)
+		self.response.set_status(303)
+		self.response.headers['Location'] = '/puzzles?' + urllib.urlencode({"number" : phone_number})
+		self.response.write('')
 
 class HelpController(webapp2.RequestHandler):
 	def get(self):
@@ -102,7 +111,10 @@ class HelpController(webapp2.RequestHandler):
 	
 class PuzzleSelectionController(webapp2.RequestHandler):
 	def get(self):
-		rendered = renderer.render('client/playergamehome.html', {})
+		rendered = renderer.render('client/playergamehome.html', { 
+			'game': game,
+			'number': self.request.get('number')
+		})
 		self.response.write(rendered)
 		
 	def post(self):
@@ -110,7 +122,12 @@ class PuzzleSelectionController(webapp2.RequestHandler):
 		
 class PuzzleAnswerController(webapp2.RequestHandler):
 	def get(self):
-		rendered = renderer.render('client/challenge.html', {})
+		puzzle = game.minigames[self.request.get('puzzleId')]
+		number = self.request.get('number')
+		rendered = renderer.render('client/challenge.html', { 
+			'challenge': puzzle,
+			'number': number  
+		})
 		self.response.write(rendered)
 		
 	def post(self):
@@ -136,8 +153,6 @@ class PuzzleAnswerController(webapp2.RequestHandler):
 		resp = game.checkAnswer(minigame, answer)
 		if resp:
 			self.response.write("Success!")
-		elif game.minigames[minigame].key.isHandGraded:
-			self.response.write("Waiting for grading.")
 		else:
 			self.response.write("Incorrect.")
 ###
