@@ -31,6 +31,13 @@ class User(Person):
         for answer in self.completedMinigames.values():
             counter = counter + answer.score
         return counter
+    
+    def getNumCompletedPuzzles(self):
+        counter = 0
+        for answer in self.completedMinigames.values():
+            if answer.isComplete:
+                counter = counter + 1
+        return counter
         
     @staticmethod
     def createFromAppEngine():
