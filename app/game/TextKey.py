@@ -34,6 +34,7 @@ class TextKey(Key):
             for candidate in self.answers:
                 if candidate.lower() == answer.textData.lower():
                     answer.score = self.value + self.getBonus(self.parent.countCorrectSolutions())
+                    answer.owner.completedMinigames[answer.id] = answer
                     answer.markCompleted()
         except:
             pass
