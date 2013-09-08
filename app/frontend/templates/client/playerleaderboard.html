@@ -9,17 +9,7 @@
 
         <!-- Optional theme -->
         <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-theme.min.css">
-        <link rel="stylesheet" href="ingame.css"> 
-
-        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-        <!--[if lt IE 9]>
-          <script src="../../assets/js/html5shiv.js"></script>
-          <script src="../../assets/js/respond.min.js"></script>
-        <![endif]-->
-
-        <style>
-
-        </style>
+        <link rel="stylesheet" href="css/ingame.css"> 
     </head>
     <body>
         <nav class="navbar navbar-default" role="navigation">
@@ -40,24 +30,22 @@
         </nav>
 
  <div id="content-area" class="container">
-    <h1 id="game-name">{{game.name}}</h1> 
-    <div class="info-text">
-        <p>{{game.description}}</p> 
-    </div>
-    
-    <h3 id="challenge-list">Challenges</h3>
-    <table class="table table-striped">
-	{% for challenge in game.minigames %}
+    <h1 id="leaderboard-header">Leaderboard</h1> 
+       <table class="table">
         <tr>
-	    <form id="{{loop.index0}}">
-		<input type="hidden" value="{{challenge.name}}" name="puzzleId"/>
-		<input type="hidden" value="{{number}}" name="number"/>
-                <a href="/challenge" onclick="document.forms['{{loop.index0}}'].submit()"><td id="challenge-id">{{challenge.name}}</td>
-                <td><span class="glyphicon glyphicon-ok-sign"</span></td></a>
-	    </form>
+            <th id="team-id">Team</th>
+            <th id="puzzles-completed">Puzzles Completed</th>
+            <th id="total-score">Total Score</th>
         </tr>
-	{% endfor %}
-    </table>
+        {% for user in users %}
+            <tr>
+                <td>{{user.name}}</td>
+                <td>{{user.getNumCompletedPuzzles()}}</td>
+                <td>{{user.getScore()}}</td> 
+            </tr>
+        {% endfor %}
+
+        </table>
 </div>
     </body> 
 </html> 

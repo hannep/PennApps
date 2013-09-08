@@ -2,6 +2,7 @@
 # Library imports
 ###
 import webapp2
+import urllib
 
 ###
 # App imports
@@ -83,8 +84,16 @@ class RegisterTeamController(webapp2.RequestHandler):
 		phone_number = country_code + mobile_number
 		name = self.request.get('teamName')
 		user = User(phone_number, name)
-		game.users.append(user)
-		self.response.write('done')
+		append_user = True
+		for usr in game.users:
+			if usr.phone == user.phone:
+				append_user = False
+				break
+		if append_user:
+			game.users.append(user)
+		self.response.set_status(303)
+		self.response.headers['Location'] = '/puzzles?' + urllib.urlencode({"number" : phone_number})
+		self.response.write('')
 
 class HelpController(webapp2.RequestHandler):
 	def get(self):
@@ -100,17 +109,34 @@ class HelpController(webapp2.RequestHandler):
 		})
 		self.get()
 	
+class LeaderboardController(webapp2.RequestHandler):
+	def get(self):
+		sorted_users = game.sortUsersByScore()
+		rendered = renderer.render('client/playerleaderboard.html', {
+			'users': sorted_users
+		})
+		self.response.write(rendered)
+
 class PuzzleSelectionController(webapp2.RequestHandler):
 	def get(self):
-		rendered = renderer.render('client/playergamehome.html', {})
+		rendered = renderer.render('client/playergamehome.html', { 
+			'game': game,
+			'number': self.request.get('number')
+		})
 		self.response.write(rendered)
 		
 	def post(self):
 		self.redirect('/challenge')
 		
 class PuzzleAnswerController(webapp2.RequestHandler):
-	def get(self):
-		rendered = renderer.render('client/challenge.html', {})
+	def get(self, message=''):
+		puzzle = game.minigames[self.request.get('puzzleId')]
+		number = self.request.get('number')
+		rendered = renderer.render('client/challenge.html', { 
+			'challenge': puzzle,
+			'number': number,
+			'message': message
+		})
 		self.response.write(rendered)
 		
 	def post(self):
@@ -134,12 +160,8 @@ class PuzzleAnswerController(webapp2.RequestHandler):
 			self.response.write("Something went wrong.")
 		answer = Answer(user, minigame, data)
 		resp = game.checkAnswer(minigame, answer)
-		if resp:
-			self.response.write("Success!")
-		elif game.minigames[minigame].key.isHandGraded:
-			self.response.write("Waiting for grading.")
-		else:
-			self.response.write("Incorrect.")
+		self.get('Correct!' if resp else 'Wrong!')
+
 ###
 # Routes
 ###
@@ -151,5 +173,6 @@ application = webapp2.WSGIApplication([
 	('/challenge', PuzzleAnswerController),
 	('/puzzles', PuzzleSelectionController),
 	('/help', HelpController),
+	('/scores', LeaderboardController),
     ('/', RegisterTeamController)
 ], debug=True)

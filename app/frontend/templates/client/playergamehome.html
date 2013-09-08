@@ -9,7 +9,7 @@
 
         <!-- Optional theme -->
         <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-theme.min.css">
-        <link rel="stylesheet" href="ingame.css"> 
+        <link rel="stylesheet" href="css/ingame.css"> 
 
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>
@@ -40,20 +40,22 @@
         </nav>
 
  <div id="content-area" class="container">
-    <h1 id="challenge-name">Game Name</h1> 
+    <h1 id="game-name">{{game.name}}</h1> 
     <div class="info-text">
-        <p> Here is some infotext. Lorem ipsum dolor sit amet blah blah blah. Shall I compare thee to a summer's day? Thou art more lovely and more temperate. Rough winds do shake the darling buds of May, and summer's lease can't solve this puzzle. Add button </p> 
+        <p>{{game.description}}</p> 
     </div>
     
     <h3 id="challenge-list">Challenges</h3>
     <table class="table table-striped">
-	{% for challenge in game.minigames %}
-        <tr>
-	    <form id="{{loop.index0}}">
+	{% for key, challenge in game.minigames.iteritems() %}
+        <tr style="cursor: pointer;" onclick="document.forms['{{loop.index0}}'].submit()">
+	    <form id="{{loop.index0}}" action="/challenge">
 		<input type="hidden" value="{{challenge.name}}" name="puzzleId"/>
 		<input type="hidden" value="{{number}}" name="number"/>
-                <a href="/challenge" onclick="document.forms['{{loop.index0}}'].submit()"><td id="challenge-id">{{challenge.name}}</td>
-                <td><span class="glyphicon glyphicon-ok-sign"</span></td></a>
+        <td id="challenge-id">{{challenge.name}}</td>
+        <td>
+            <span class="glyphicon glyphicon-ok-sign"</span>
+        </td>
 	    </form>
         </tr>
 	{% endfor %}
