@@ -72,7 +72,7 @@ class AdminGameEditController(webapp2.RequestHandler):
 
 	def get_game(self):
 		id = int(self.request.get('id'))
-		return MOCK_GAMES[id] if id < len(MOCK_GAMES) else None
+		return Game.createFromAppEngine(id)
 
 	def update_game(self):
 		game = self.get_game()

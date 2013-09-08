@@ -9,7 +9,6 @@ from Answer import *
 from time import sleep
 import fileinput, sys
 
-
 def loadSampleData():
     game = GameModel(id = 0, duration = -1, name="game")
     game.put()
