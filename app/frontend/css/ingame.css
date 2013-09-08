@@ -1,3 +1,13 @@
+@font-face {
+    font-family: chunkfive;
+    src: local(chunkfive), url('../fonts/chunkfive-webfont.ttf') format('opentype');
+}
+
+.navbar-brand {
+    font-family: chunkfive;
+    font-size: 32px;
+}
+
 #subject {
     width: 100%; 
 }
@@ -38,7 +48,7 @@
 
 .flat-left{
     border-radius: 0px 5px 5px 0px;
-    width: 289px; 
+    width: 100%;
     text-align: left; 
 }
 
@@ -63,6 +73,9 @@
     
 }
 
+button[type="submit"] {
+    width: 320px;
+}
 
 
 nav {
@@ -71,7 +84,7 @@ nav {
 body {
     background-color: rbg(57,57,57); 
     /*Change this!*/
-    background: url(graypattern.png) repeat;
+    background: url(darkblue.png) repeat;
    /*
     content: "";
     top: 0;

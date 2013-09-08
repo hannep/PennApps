@@ -55,7 +55,7 @@ class Minigame(object):
     def verify(self, answer):
         #self.answer.gradeAnswer(answer)
         #return answer.isComplete
-        success = answer.data == self.answer
+        success = answer.data.lower() == self.answer.lower()
         if success:
             answer.score = 5
             answer.isComplete = True
@@ -69,7 +69,8 @@ class Minigame(object):
         for answer in self.answers:
             if answer.owner == user:
                 counter = counter + 1
-        return (counter - 1) < self.numRetries
+        return True
+        #return (counter - 1) < self.numRetries
     
     def countCorrectSolutions(self):
         counter = 0

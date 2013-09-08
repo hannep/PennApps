@@ -35,7 +35,18 @@ class Game(object):
             self.addUser(user)
         for minigame in minigames:
             self.addMinigame(minigame)
-            
+    def userHasCompleted(self, minigame, number):
+        user = None
+        for usr in self.users:
+            if usr.phone == number:
+                user = usr
+        if user == None:
+            return False
+        try:
+            user.completedMinigames[minigame]
+            return True
+        except:
+            return False    
     def sortUsersByScore(self):
         return sorted(self.users, key=lambda x: x.getScore(), reverse=True)
     
