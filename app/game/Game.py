@@ -35,6 +35,9 @@ class Game(object):
             self.addUser(user)
         for minigame in minigames:
             self.addMinigame(minigame)
+            
+    def sortUsersByScore(self):
+        return sorted(self.users, key=lambda x: x.getScore(), reverse=False)
     
     def addUser(self, user):
         self.users.append(user)
