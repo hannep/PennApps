@@ -40,14 +40,18 @@
 	      <input type="hidden" value="{{challenge.name}}" name="puzzleId"/>
 	      <input type="hidden" value="{{number}}" name="number"/>
               <div class="form-group">
-                <div class="col-lg-10">
-                  <input type="text" class="form-control" id="subject" name="subject" placeholder="Subject">
-                </div>
-              </div>
-              <div class="form-group">
-                <div class="col-lg-10">
-                    <textarea class="form-control" rows="5" id="message" placeholder="Type your message here." name="message"></textarea>
-                </div>
+                <div class="input-group input-group-lg fancy-entry">
+                  <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
+                  <input type="text" class="form-control text-answer" placeholder="Enter your answer" name="message">
+                </div>   
+                <div class="disabled input-group input-group-lg fancy-entry">
+                    <span class="input-group-addon" style="opacity: 0.7;"><span class="glyphicon glyphicon-camera"></span></span>
+                    <input type="button" class="btn btn-default btn-lg flat-left" name="upload-pic" value="Upload Photo" disabled>
+                </div>       
+                <div class="disabled input-group input-group-lg fancy-entry">
+                    <span class="input-group-addon" style="opacity: 0.7;"><span class="glyphicon glyphicon-map-marker"></span></span>
+                    <input type="button" class="btn btn-default btn-lg flat-left" name="upload-pic" value="Attach Current Location" disabled>
+                </div>                 
               </div>
               <div class="form-group">
                 <div class="col-lg-offset-2 col-lg-10">
