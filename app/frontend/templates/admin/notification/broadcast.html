@@ -13,7 +13,13 @@
         <h3 class="text-muted"><a href="/admin">Admin Console</a></h3>
       </div>
       <div class="jumbotron">
-        <h1>Send a broadcast notification</h1>
+        <h3>Messages</h3>
+          <ul>
+          {% for message in messages %}
+            <li>{{message.subject}} - {{message.message}}</li>
+          {% endfor %}
+          </ul>
+        <h3>Send a broadcast notification</h3>
         <form class="form-inline" role="form" method="post">
           <div class="form-group">
             <label class="sr-only" for="message">Message</label>
