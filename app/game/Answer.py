@@ -31,4 +31,4 @@ class Answer(object):
         
     def grade(self, grade):
         self.score = grade
-        self.markGrade()
+        self.markGraded()

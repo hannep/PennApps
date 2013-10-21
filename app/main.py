@@ -165,6 +165,20 @@ class PuzzleAnswerController(webapp2.RequestHandler):
 		resp = game.checkAnswer(minigame, answer)
 		self.get('Correct!' if resp else 'Wrong!')
 
+class VerifyController(webapp2.RequestHandler):
+	def get(self):
+		rendered = renderer.render('admin/submissionapproval.html', {
+			'game': game
+			'answers': game.handGradedAnswers
+			'checkedAnswers': game.answersGraded
+		})
+		self.response.write(rendered)
+		pass
+	def post(self):
+		answer = self.request.get("check-submission")
+		self.redirect('/admin/verify')
+		pass
+	
 ###
 # Routes
 ###
@@ -177,5 +191,6 @@ application = webapp2.WSGIApplication([
 	('/puzzles', PuzzleSelectionController),
 	('/help', HelpController),
 	('/scores', LeaderboardController),
+	('/admin/verify', VerifyController),
     ('/', RegisterTeamController)
 ], debug=True)

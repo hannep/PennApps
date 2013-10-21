@@ -26,6 +26,8 @@ class Game(object):
         self.users = list()
         self.adminNotifications = list()
         self.userNotifications = list()
+        self.handGradedAnswers = list()
+        self.answersGraded = list()
         self.minigames = dict()
         self.duration = duration
         self.start = datetime.datetime.now()
@@ -52,6 +54,27 @@ class Game(object):
     
     def addUser(self, user):
         self.users.append(user)
+    
+    def gradeHandGradedAnswer(self, answer, value):
+        remove = None
+        for ans in self.handGradedAnswers:
+            if ans == answer:
+                answer.grade(value)
+                answer.markCompleted()
+                remove = ans
+        self.handGradedAnswers.remove(remove)
+        self.answersGraded(answer)
+        for user in self.users:
+            if user == answer.owner:
+                if value > 0:
+                    user.sendText("Your answer was graded correct")
+                else:
+                    user.sendText("Your answer was graded incorrect")   
+        pass 
+    
+    def addHandGradedAnswer(self, answer):
+        self.notifyAdmins("An answer needs grading.")
+        self.handGradedAnswers.append(answer)
         
     def addAdmin(self, admin):
         self.admins.append(admin)
