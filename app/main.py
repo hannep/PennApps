@@ -10,6 +10,7 @@ import urllib
 from utils import renderer
 from game import *
 
+# ADD PUZZLES HERE!
 game = Game(name='Stony Brook Puzzle Hunt 2013', description='Explore the campus and solve puzzles in this semesters exciting puzzle hunt! Prizes will be provided to the top 3 teams.')
 game.minigames["The Secret Letter"] = Minigame("The Secret Letter", "I USED TO THINK I WAS INDECISIVE, BUT NOW I'M NOT SO SURE.", TextQuestion("What do I say? Q BAWK HI HZQUF Q XVA QUKWTQAQDW, GBH UIX Q'C UIH AI ABEW."))
 game.minigames["The Forrester's Riddle"] = Minigame("The Forrester's Riddle", "a splinter", TextQuestion("I went into the woods and got it. I sat down to seek it. I brought it home with me because I couldn't find it. What is it?"))
@@ -168,16 +169,26 @@ class PuzzleAnswerController(webapp2.RequestHandler):
 class VerifyController(webapp2.RequestHandler):
 	def get(self):
 		rendered = renderer.render('admin/submissionapproval.html', {
-			'game': game
-			'answers': game.handGradedAnswers
+			'game': game,
+			'answers': game.handGradedAnswers,	
 			'checkedAnswers': game.answersGraded
 		})
 		self.response.write(rendered)
-		pass
 	def post(self):
-		answer = self.request.get("check-submission")
+		val = self.request.get("check-submission")
+		minigame = self.request.get("minigame")
+		owner = self.request.get("owner")
+		mg = None
+		for mini in game.minigames:
+			if mini.name == minigame:
+				mg = mini
+		for ans in mg.answers:
+			if ans.owner.name == owner.name and not ans.isGraded:
+				if val == "correct":
+					ans.grade(5)
+				else:
+					ans.markGraded()
 		self.redirect('/admin/verify')
-		pass
 	
 ###
 # Routes

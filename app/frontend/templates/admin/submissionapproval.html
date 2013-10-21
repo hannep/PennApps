@@ -13,7 +13,7 @@
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>
           <script src="../../assets/js/html5shiv.js"></script>
-          <script src="../../assets/js/respond.min.js"></script>
+             <script src="../../assets/js/respond.min.js"></script>
         <![endif]-->
 
         <style>
@@ -33,11 +33,13 @@
     		</tr>
     		<tr>
             {% for answer in answers %}
-    			<td>{answer[0].owner.name}</td>
-    			<td>{game.minigames[answer[0].id].name</td>
-                <td><img src="{answer[0].data}" /></td>
+    			<td>{answer.owner.name}</td>
+    			<td>{game.minigames[answer.id].name</td>
+                <td><img src="{answer.data}" /></td>
     			<td>
-    				<form class="form-inline" role="form">
+    				<form class="form-inline" role="form" method="post">
+                        <input type="hidden" name="minigame" value="{answer.id}" />
+                        <input type="hidden" name="owner" value="{answer.owner.name}" />
     					<label><input type="radio" name="check-submission" value="correct">  Correct  </label>
     					<label><input type="radio" name="check-submission" value="incorrect">  Incorrect  </label>
     					<input type="submit" value="Submit">
@@ -54,18 +56,24 @@
     		<tr>
     			<th>Team</th>
     			<th>Question/Puzzle</th>
+                <th>Answer</th>
     			<th>Approval</th>
     		</tr>
     		<tr>
-    			<td>1</td>
-    			<td>2</td>
+            {% for answer in checkedAnswers %}
+    			<td>{answer.owner.name}</td>
+    			<td>{game.minigames[answer.id].name</td>
+                <td><img src="{answer.data}" /></td>
     			<td>
-    				<form class="form-inline" role="form">
+    				<form class="form-inline" role="form" method="post">
+                        <input type="hidden" name="minigame" value="{answer.id}" />
+                        <input type="hidden" name="owner" value="{answer.owner.name}" />
     					<label><input type="radio" name="check-submission" value="correct">  Correct  </label>
     					<label><input type="radio" name="check-submission" value="incorrect">  Incorrect  </label>
     					<input type="submit" value="Submit">
     				</form>
     			</td>
+            {% endfor %}
     		</tr>
     	</table>
     </body> 
